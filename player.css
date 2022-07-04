@@ -19,7 +19,7 @@ html {
     height: 140vh;
     background-size: 50rem 70rem;
     background-color:#f6f6f6;
-    background-image: url("image/pal5.jpg");
+    background-image: url("image/intro...jpg");
     display:grid;
     place-items: center;
     position: left top;
