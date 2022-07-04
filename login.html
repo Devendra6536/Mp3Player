@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
+      <!-- Bootstrap CSS -->
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+         crossorigin="anonymous">
+ 
+<style>
+             
+
+                 /* this is login form csss */
+        
+
+
+    .forms{
+        border: 3px solid #f1f1f1;
+        height: 670px;
+        width: 600px; 
+        box-shadow: 0 0 40px black;
+        border-radius: 10px;
+        padding: 25px;
+        margin:auto;  
+        margin-bottom:50px;
+        margin-top: 50px;
+        position: relative;
+        background-color:#F2F2F2;
+        background-image:url("./image/wave.png");
+       
+        
+    }
+    
+    #form-title{
+        font-size: 25px;
+        font-family:century gothic;
+        text-align:center;
+        font-weight:bold;
+    }
+    input[type="email"],input[type="password"],
+    input[type="text"]{
+        margin: 100px;
+        margin-left:140px;
+        margin-top : 0px;
+        margin-bottom : 0px;
+        padding:20px;
+        background: #f1f1f1;
+        width: 50%;
+        height:10px;
+        outline: none;
+        text-decoration: none;
+        border-top:2px solid #0000;
+        border-left:none;
+        border-right:none;
+     }
+     .entry:focus {
+  border-bottom: 3px solid dodgerblue;
+}
+    
+    .can{
+        color: #fff;
+        background-color:green;
+        height: 45px;
+        margin-left: 50px;
+        width: 30%;
+        border: none;
+        font-size: 20px;
+        cursor: pointer;
+        font-family:'Lucida Sans', sans-serif;
+        font-weight:100;
+        outline: 10px;
+        border: 2ps solid blue;
+    }
+    
+    .can:hover{
+        opacity: 0.5;
+     }    
+    .control-label{
+        font-size: 20px;
+        font-weight: 500px;
+        font-family: century gothic;
+        font-weight:900;
+        text-align: center;
+        margin-left:90px;
+        
+    
+    }
+    
+    /* this is icon code */
+    
+    .icon{
+        height: 55px;
+        width: 55px;
+        padding:15px;
+        text-align: center;
+        background-color:blue;
+        color:white;
+        margin-left: 8px;    
+        box-shadow: 0 0 4px black;
+    }
+    #suggestion {
+       color:black;
+       margin-top:50px;
+      
+        
+    }
+    
+    .content{
+            margin-left: 300px;
+        }
+        .trigram1{
+            display:none;
+            float:left;
+        }
+        @media screen and (max-width: 768px) {
+                        
+                        .forms{
+                            width:400px;
+                            margin-left:5px;
+                            margin-right: 10px;
+                            margin-top:50px;
+                        }
+
+        } 
+                    
+    
+
+         </style>
+
+    
+    
+    <title>Please login here</title>
+</head>
+<body> 
+
+
+   <!-- this is log in form code -->
+                <div class="forms" id="form">
+                    <marquee><h1 id="form-title">LOG IN HERE</h1></marquee>
+                    <form action="login.php" method="post"><br><br>
+
+                            <img src="./image/avatar.svg" style="width: 60px; height: 60px; 
+                            margin-left:230px; border:1px solid black; border-radius:50%; 
+                            box-shadow: 0 0 40px black; margin-top:-40px; margin-bottom:20px;">
+
+                    <!-- <label class="control-label"> Username</label> -->
+                    <input type="text" placeholder="        Enter your name        " name="username" id="username" allowed   class="entry" > 
+                    <br><br><br>
+                        <!-- <label class="control-label">Email</label> -->
+                        <input type="email"  placeholder="     Enter your email address      "  name="email" id="email" class="entry">
+                        <br><br><br>
+                    <!-- <label class="control-label"> Password</label><br> -->
+                    <input type="password" placeholder="       Enter your Password               " name="password" id="password" allowed class="entry">
+
+
+                        <br><br><br>
+                    <button type="submit" class="btn-success can" onclick="showLogin()">Login</button>
+                    <p style="float:right; margin-top:10px;"><a href="#">forget your password</a></p><br>
+                    </form>
+                    
+
+                    <!-- this is web icon like whatsapp,facebook,ista,wordpress etc... -->
+                    <center><p id="suggestion" >Log in with</p></center>
+                    <hr style="height: 3px; background-color:blue; margin-top:-20px;">
+                    <br>
+                        
+                <!-- this is webicon-->
+                    <a href=https://www.facebook.com target="blank" > <i class="fa icon fa-facebook" style="font-size:25px; border-radius:50%;"></i></a>
+                    <a href="https://www.instagram.com" target="blank">   <i class="fa icon fa-instagram" style="font-size:25px;border-radius:50%; background-color:red; "></i></a>
+                    <a href=https://www.linledin.com  target="blank"> <i class="fa icon fa-linkedin"   style="font-size:25px;border-radius:50%; background-color:#0080ff;"></i></a> 
+                    <a href="https://www.twitter.com" target="blank">   <i class="fa  icon fa-twitter"  style="font-size:25px; border-radius:50%;background-color:#0080ff;"></i></a> 
+                    <a href=https://www.telegram.com  target="blank"> <i class="fa icon fa-telegram"  style="font-size:25px; border-radius:50%;color:white;"></i></a>
+                    <a href="https://www.youtube.com" target="blank">   <i class="fa icon fa-youtube"  style="font-size:25px;color:white; background-color:red;"></i></a>    
+                    
+      <!-- this is login form coding -->
+            </div>
+        </div>
+    </div>
+
+<script>
+    document.getElementById("username").required=true;
+    document.getElementById("email").required=true;
+    document.getElementById("password").required=true;
+    function stf(){
+                    document.getElementById("m").style.margin="0px";
+                }
+    </script>
+    
+   
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js" integrity="sha384-eMNCOe7tC1doHpGoWe/6oMVemdAVTMs2xqW4mwXrXsW0L84Iytr2wi5v2QjrP/xp" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    -->
+</body>
+</html>
