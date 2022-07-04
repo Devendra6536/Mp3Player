@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@1,200&display=swap");
+*,
+*::before,
+*::after
+{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5;
+    font-family: "jost" , sans-serif;
+}
+
+.main_div {
+    width: 100vw;
+    height: 100vh;
+    background-color: #f6f6f6;
+}
+
+.music_container {
+    width: 35rem;
+    height: 55rem;
+    background-color: #ffffff;
+    border-radius: 2rem;
+    box-shadow: 0 1.2rem 3rem 0.5rem rgba(0, 0, 0, 0.2) ;
+    padding: 3rem;
+    text-align: center;  
+
+}
+.music_container #title{
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    word-spacing: 0.5rem;
+    color: #171717;
+    margin: 2rem 0 0.5rem 0;
+    font-size: 2.5rem;
+    font-weight: 500;
+    text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.3);
+
+}
+
+.music_container #artist {
+    color: #cccaca;
+    text-transform: capitalize;
+    letter-spacing: 0.1rem;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 4rem;
+
+
+}
+img{
+    width: 25rem;
+    height: 25rem;
+    margin: auto;
+}
+img{
+    box-shadow: 0 1.2rem 3rem 0.5rem rgba(0, 0, 0, 0.4);
+}

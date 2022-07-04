@@ -1,0 +1,37 @@
+{
+	"folders": [
+		{
+			"name": "simple",
+			"path": "."
+		},
+		{
+			"name": "WEB MUSIC PLAYER",
+			"path": "..\\WEB MUSIC PLAYER"
+		},
+		{
+			"name": "javascript",
+			"path": "..\\javascript"
+		},
+		{
+			"name": "JavaScriptforProfessional",
+			"path": "..\\JavaScriptforProfessional"
+		},
+		{
+			"name": "PYTHON WORK",
+			"path": "..\\PYTHON WORK"
+		},
+		{
+			"name": "website",
+			"path": "..\\website"
+		},
+		{
+			"name": "C practice",
+			"path": "..\\C practice"
+		},
+		{
+			"name": "html",
+			"path": "..\\html"
+		}
+	],
+	"settings": {}
+}

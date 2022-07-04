@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>WEBMP3PLAYER</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+         integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
+          crossorigin="anonymous"
+           />
+           <link rel="stylesheet" href="player.css"  />
+    </head>
+    <body>       
+                 
+        <div class="main"> 
+           
+           <marquee behavior="alternate" scrollamount="16"><h1> <i class="fa fa-music"></i>  MY MUSIC PLAYER</h1></marquee>
+                
+            
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+            
+            <div class="music_container" >
+                <h2 id="title">A.DEEP LOYALTY</h2>
+                <h3 id="artist">the localist</h3>
+                <div class="img_container">
+                    <img src="image/pal.jpg" alt="" />
+                    
+                    </div>
+                    <audio src="music/pal.mp3"></audio> 
+
+
+                    <!--progress bar-->
+
+                    <div class="prograssbar_container" id="prograss_container">
+                    <div class="prograss_duration_meter">
+                        <div id="current_time">0.00</div>
+                        <div id="duration">4.48</div>
+                        </div>
+                        <div class="progress_div" id="progress_div">
+                            <div class="progress" id="progress"></div>
+
+                        </div>
+
+                    
+                    <!----controls---->
+                    <div class="music_controls">
+                        <i class="fas fa-backward" id="prev" title="previous"></i>
+                        <i class="fas fa-play button" id="play" title="play"></i>
+                        <i class="fas fa-forward" id="next" title="next"></i>
+                    </div>
+                    </div>
+
+             </div>
+             <footer style="background-color: chartreuse;margin-left: 410px;font-weight: 300;">$devendra kumar@2020</footer>
+
+        </div>
+        
+        <script>
+            const music = document.querySelector("audio");
+            const img = document.querySelector("img")
+            const play = document.getElementById("play"); 
+            const artist = document.getElementById("artist"); 
+            const title = document.getElementById("title"); 
+            const prev = document.getElementById("prev"); 
+            const next = document.getElementById("next"); 
+
+
+            let progress = document.getElementById("progress");
+            let total_duration = document.getElementById("duration");
+            let current_time = document.getElementById("current_time");
+
+            const progress_div  =  document.getElementById("progress_div");
+            // this is playlist of mp3 song
+            const songs = [
+              
+               {
+                   name: "pal1",
+                   title: "1. nayak nahi khalnayak",
+                   artist: "not known",
+               },
+               {
+                   name: "pal2",
+                   title: "2. Apno Ne Diya h Dhoka",
+                   artist: "not known",
+               },
+               {
+                   name: "pal3",
+                   title: "3. Lagi Aaj sawan phir wo",
+                   artist: "not known",
+               },
+               {
+                   name: "pal4",
+                   title: "4. Ye To Wahi Diwana Hai",
+                   artist: "not known",
+               },
+               {
+                   name: "pal5",
+                   title: "5.Hum Jaisa Kahin Aapko Dilbar na",
+                   artist: "not known",
+               },
+               {
+                   name: "pal6",
+                   title: "6. Garibo Ki Suno",
+                   artist: "not known",
+               },
+               {
+                   name: "pal7",
+                   title: "7. Humko Rula Diya",
+                   artist: "not known",
+               },
+               {
+                   name: "pal8",
+                   title: "8. Sans Aati Hai",
+                   artist: "not known",
+               },
+               {
+                   name: "pal9",
+                   title: "9.Ankh mere Yar Ki",
+                   artist: "not known",
+               },
+               {
+                   name: "pal10",
+                   title: "10.Musafir Jane Wale",
+                   artist: "not known",
+               },
+               {
+                   name: "pal11",
+                   title: "11. 100 sal pehle",
+                   artist: "shastri",
+               },
+               {
+                   name: "pal12",
+                   title: "12.Ae Mere Dost Laut Ke",
+                   artist: "not known",
+               },
+               {
+                   name: "pal13",
+                   title: "13. Ae Mere humsafar",
+                   artist: "not known",
+               },
+               {
+                   name: "pal14",
+                   title: "14. Agar zindgi ho",
+                   artist: "not known",
+               }, {
+                   name: "pal15",
+                   title: "15. allah allah trif teri",
+                   artist: "not known",
+               },
+               {
+                   name: "pal16",
+                   title: "16. ankh h bhri bhri",
+                   artist: "not known",
+               },
+               {
+                   name: "pal17",
+                   title: "17.zindgi ki raho me",
+                   artist: "not known",
+               },
+               {
+                   name: "pal18",
+                   title: "18.zamane ke dekhe h rang 1000",
+                   artist: "not known",
+               },
+               {
+                   name: "pal19",
+                   title: "19. ye dua meri rab se",
+                   artist: "not known",
+               },
+               {
+                   name: "pal20",
+                   title: "20. yad teri ayegi",
+                   artist: "not known",
+               },
+               {
+                   name: "pal21",
+                   title: "21. Lal Dupatta Uad Gaya",
+                   artist: "not known",
+               }
+            ]
+
+            let isPlaying = false;
+            //for  play function
+            const playMusic= () => {
+                isPlaying = true;
+                music.play()
+                play.classList.replace("fa-play", "fa-pause")
+                img.classList.add("anime");
+            }      
+
+            //for  pause function
+            const pauseMusic= () => {
+                isPlaying = false;
+                music.pause()
+                play.classList.replace("fa-pause", "fa-play")
+                img.classList.remove("anime");
+            } 
+
+
+            play.addEventListener('click', () => {
+               if ( isPlaying ) {
+                   pauseMusic();
+               } else{
+                   playMusic();
+               }
+            }); 
+
+            //changing the  music data 
+
+            const loadSong = (songs) => {
+                title.textContent = songs.title;
+                artist.textContent = songs.artist;
+               music.src = "music/" + songs.name + ".mp3";
+                img.src = "image/"+ songs.name + ".jpg";
+            }; 
+
+         songIndex = 0;
+         //  loadSong(songs[2]);
+            
+         const nextSong = ()  => {
+                songIndex = (songIndex + 1) % songs.length;
+                loadSong(songs[songIndex]);
+                playMusic();
+            };
+
+
+            const prevSong = ()  => {
+                songIndex = (songIndex -1 + songs.length) % songs.length;
+                loadSong(songs[songIndex]);
+                playMusic();
+            };
+
+            // progress js work
+
+            music.addEventListener('timeupdate',(event) =>{
+                //console.log(event);
+                const { currentTime, duration } = event.srcElement;
+                
+                let progress_time = (currentTime / duration) *100
+                progress.style.width = `${ progress_time }%`;
+
+              //  music duration update
+                let min_duration =Math.floor(duration / 60) ;
+                let sec_duration = Math.floor(duration % 60) ;
+               
+
+                 let tot_duration = `${min_duration}:${sec_duration}` ;
+                if(duration){
+                    total_duration.textContent = `${tot_duration}`;
+                }
+                    
+
+                //  current  duration update
+                let min_currentTime =Math.floor(currentTime / 60) ;
+                let sec_currentTime = Math.floor(currentTime % 60) ;
+               
+
+                 
+                if(sec_currentTime<10) {
+                    sec_currentTime =  `0${sec_currentTime}`;
+                }
+                let tot_currentTime = `${min_currentTime}:${sec_currentTime}`;
+                 current_time.textContent = `${tot_currentTime}`;
+                
+});
+
+
+          //  progress  onclick functionality
+                progress_div.addEventListener("click" , (event) => {
+                    console.log(event);
+                    const { duration } = music;
+
+
+                    let move_progress = 
+                    (event.offsetX / event.srcElement.clientWidth* duration);
+                    
+                    console.log(duration);
+                    console.log(move_progress); 
+
+
+                    music.currentTime = move_progress;
+                });
+
+
+
+            // if music end call next song func
+            music.addEventListener("ended",nextSong);
+            // for next and previous song
+            next.addEventListener("click", nextSong);
+            prev.addEventListener("click", prevSong);
+            
+        </script>
+        </body>
+</html>
