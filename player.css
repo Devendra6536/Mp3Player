@@ -16,7 +16,7 @@ html {
 
 .main {
     width: 100vw;
-    height: 100vh;
+    height: 50vh;
     background-size: 50rem 70rem;
     background-image: url("image/intro...jpg");
     display:grid;
