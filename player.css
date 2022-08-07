@@ -16,9 +16,8 @@ html {
 
 .main {
     width: 100vw;
-    height: 140vh;
+    height: 100vh;
     background-size: 50rem 70rem;
-    background-color:#f6f6f6;
     background-image: url("image/intro...jpg");
     display:grid;
     place-items: center;
@@ -27,8 +26,6 @@ html {
     border-style: solid;
     border-width:  thick medium thick 1px;
     background-size: cover;
-   
-    
     
 }
 
@@ -41,7 +38,7 @@ html {
     padding: 1.5rem;
     text-align: center;
     border-color: red; 
-    background-position: center center; 
+    /* background-position: center center;  */
     place-items: center;
     border-style: solid;
     border-width:  thick medium thin 7px;
