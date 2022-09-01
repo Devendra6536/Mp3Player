@@ -16,7 +16,7 @@ html {
 
 .main {
     width: 100vw;
-    height: 50vh;
+    height: 100vh;
     background-size: 50rem 70rem;
     background-image: url("image/intro...jpg");
     display:grid;
@@ -30,6 +30,7 @@ html {
 }
 
 .music_container {
+    position: relative;
     width: 20rem;
     height: 35rem;
     background-color: #ffffff;
@@ -43,6 +44,8 @@ html {
     border-style: solid;
     border-width:  thick medium thin 7px;
     border-color: red;
+    top: 150px;
+    left: -300px;
 
 }
 .music_container #title{
