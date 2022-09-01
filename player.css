@@ -30,7 +30,7 @@ html {
 }
 
 .music_container {
-    position: relative;
+     
     width: 20rem;
     height: 35rem;
     background-color: #ffffff;
@@ -44,8 +44,7 @@ html {
     border-style: solid;
     border-width:  thick medium thin 7px;
     border-color: red;
-    top: 90px;
-    left: -250px;
+     
 
 }
 .music_container #title{
