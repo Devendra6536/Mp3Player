@@ -12,17 +12,17 @@ html {
     font-family: "jost" , sans-serif;
 }
  
-
-
+body{
+    background: linear-gradient(to right, #78a7ba 0%, #385D6C 50%, #78a7ba 99%);
+}
 .main {
     width: 100vw;
     height: 120vh;
     background-size: 50rem 70rem;
-    background-image: url("image/intro...jpg");
+    /* background-image: url("image/intro...jpg"); */
     display:grid;
     place-items: center;
     position: left top;
-    border-color: yellow;
     border-style: solid;
     border-width:  thick medium thick 1px;
     background-size: cover;
@@ -34,16 +34,14 @@ html {
     width: 20rem;
     height: 35rem;
     background-color: #ffffff;
-    border-radius: 1rem;
+    border-radius: 10px;
     box-shadow: 0 1.2rem 3rem 0.5rem rgba(0, 0, 0, 0.2) ;
     padding: 1.5rem;
     text-align: center;
-    border-color: red; 
     /* background-position: center center;  */
     place-items: center;
-    border-style: solid;
-    border-width:  thick medium thin 7px;
-    border-color: red;
+    background: linear-gradient(to right, #ffffff 0%, #fafafa 50%, #ffffff 99%);
+
      
 
 }
