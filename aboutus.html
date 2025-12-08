@@ -78,6 +78,163 @@
   </div>
 </div>
 
-<script src="/gallery.js"></script>
+<script>
+  const TOTAL_IMAGES = 12;
+  const BASE_PATH = '';
+  const BASE_NAME = 'photo';
+  const EXTENSIONS = ['jpg','jpeg','png','webp','gif'];
+
+  const grid = document.getElementById('grid');
+  const images = [];
+
+  function findExistingImageUrl(n){
+    return new Promise((resolve, reject) => {
+      let idx = 0;
+      const attempt = () => {
+        if (idx >= EXTENSIONS.length) return reject();
+        const ext = EXTENSIONS[idx++];
+        const url = `${BASE_PATH}/${BASE_NAME}${n}.${ext}`;
+        const img = new Image();
+        img.onload = () => resolve(url);
+        img.onerror = attempt;
+        img.src = url;
+      };
+      attempt();
+    });
+  }
+
+  (async function buildThumbnails(){
+    for (let i = 1; i <= TOTAL_IMAGES; i++){
+      try{
+        const url = await findExistingImageUrl(i);
+        images.push({ src: url, alt: `Photo ${i}` });
+        const thumb = document.createElement('img');
+        thumb.className = 'thumb';
+        thumb.src = url;
+        thumb.alt = `Photo ${i}`;
+        thumb.dataset.index = images.length - 1;
+        grid.appendChild(thumb);
+      }catch(e){}
+    }
+  })();
+
+  const viewer = document.getElementById('viewer');
+  const canvas = document.getElementById('canvas');
+  const largeImg = document.getElementById('largeImg');
+  const counter = document.getElementById('counter');
+
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+  const btnZoomIn = document.getElementById('btnZoomIn');
+  const btnZoomOut = document.getElementById('btnZoomOut');
+  const btnReset = document.getElementById('btnReset');
+  const btnFull = document.getElementById('btnFull');
+  const btnClose = document.getElementById('btnClose');
+
+  let currentIndex = -1;
+  let scale = 1, minScale = 0.25, maxScale = 8;
+  let translateX = 0, translateY = 0;
+  let startX = 0, startY = 0, isDragging = false;
+
+  grid.addEventListener('click', (e) => {
+    const t = e.target.closest('.thumb');
+    if (!t) return;
+    openViewer(Number(t.dataset.index));
+  });
+
+  function openViewer(index){
+    currentIndex = index;
+    const {src, alt} = images[currentIndex];
+    largeImg.src = src;
+    largeImg.alt = alt;
+    viewer.hidden = false;
+    resetTransform(true);
+    updateCounter();
+    canvas.focus();
+  }
+
+  function closeViewer(){
+    viewer.hidden = true;
+    largeImg.src = '';
+  }
+
+  btnClose.addEventListener('click', closeViewer);
+
+  function showPrev(){
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    largeImg.src = images[currentIndex].src;
+    resetTransform(true);
+    updateCounter();
+  }
+  function showNext(){
+    currentIndex = (currentIndex + 1) % images.length;
+    largeImg.src = images[currentIndex].src;
+    resetTransform(true);
+    updateCounter();
+  }
+  btnPrev.addEventListener('click', showPrev);
+  btnNext.addEventListener('click', showNext);
+
+  document.addEventListener('keydown', (e)=>{
+    if (viewer.hidden) return;
+    if (e.key === 'ArrowLeft') showPrev();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'Escape') closeViewer();
+  });
+
+  btnZoomIn.addEventListener('click', ()=> zoomAtCanvasCenter(1.2));
+  btnZoomOut.addEventListener('click', ()=> zoomAtCanvasCenter(1/1.2));
+  btnReset.addEventListener('click', ()=> resetTransform(true));
+
+  btnFull.addEventListener('click', async ()=>{
+    if (!document.fullscreenElement) await viewer.requestFullscreen();
+    else await document.exitFullscreen();
+  });
+
+  canvas.addEventListener('wheel', (e) => e.preventDefault(), { passive: false });
+
+  canvas.addEventListener('dblclick',(e)=>{
+    const factor = e.shiftKey ? (1/1.4) : 1.4;
+    zoomAtPoint(e.clientX, e.clientY, factor);
+  });
+
+  canvas.addEventListener('mousedown',(e)=>{
+    isDragging = true; startX = e.clientX; startY = e.clientY;
+  });
+  window.addEventListener('mousemove',(e)=>{
+    if (!isDragging) return;
+    const dx = e.clientX - startX, dy = e.clientY - startY;
+    startX = e.clientX; startY = e.clientY;
+    translateX += dx; translateY += dy;
+    applyTransform();
+  });
+  window.addEventListener('mouseup',()=>{ isDragging=false; });
+
+  function updateCounter(){ counter.textContent = `${currentIndex+1} / ${images.length}`; }
+  function applyTransform(){
+    largeImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale})`;
+  }
+  function resetTransform(hard=true){
+    if (hard){ scale = 1; translateX = 0; translateY = 0; }
+    applyTransform();
+  }
+  function zoomAtCanvasCenter(factor){
+    const rect = canvas.getBoundingClientRect();
+    zoomAtLocalPoint(rect.width/2, rect.height/2, factor);
+  }
+  function zoomAtPoint(clientX, clientY, factor){
+    const rect = canvas.getBoundingClientRect();
+    zoomAtLocalPoint(clientX - rect.left, clientY - rect.top, factor);
+  }
+  function zoomAtLocalPoint(x,y,factor){
+    const newScale = Math.min(maxScale, Math.max(minScale, scale * factor));
+    const k = newScale / scale;
+    translateX = x - k * (x - translateX);
+    translateY = y - k * (y - translateY);
+    scale = newScale;
+    applyTransform();
+  }
+
+</script>
 </body>
 </html>
